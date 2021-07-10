@@ -94,9 +94,9 @@ def generate_message(data: dict):
 				message += f" -> Slots Available In: {', '.join(session.get('slots'))}\n\n"
 
 			if not available:
-				message += f" -> No available slots found!\n\n"
+				message += f" -> No available slots found for tomorrow!\n\n"
 	else:
-		message += f" -> No centers found!\n\n"
+		message += f" -> No centers found for tomorrow!\n\n"
 
 	message = message.strip()
 	message += f"\n{x_line}"
