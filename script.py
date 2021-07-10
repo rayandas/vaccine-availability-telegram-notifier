@@ -1,6 +1,6 @@
 import os
 import argparse
-from datetime import datetime
+from datetime import datetime, time, timedelta
 from common.utils import TelegramBot, get_calendar_by_pin, generate_message
 
 def check_if_env_vars_loaded(names):
@@ -10,9 +10,12 @@ def run(pincodes):
 	tb = TelegramBot(os.getenv("TELEGRAM_BOT_KEY"))
 	chat_id = os.getenv("TELEGRAM_CHAT_ID")
 	today = datetime.strftime(datetime.now(), "%d-%m-%Y")
+	time = datetime.now() + timedelta(1)
+	#temp = time + timedelta(1)
+	tomorrow = datetime.strftime(time, "%Y-%m-%d")
 	
 	for pincode in pincodes:
-		data = get_calendar_by_pin(pincode, today)
+		data = get_calendar_by_pin(pincode, tomorrow)
 		if data.get("success", None) and data.get("centers", None) != None:
 			message = generate_message(data)
 			tb.send_message(message, chat_id)
