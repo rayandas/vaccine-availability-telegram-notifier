@@ -77,6 +77,7 @@ def generate_message(data: dict):
 
 	if centers != []:
 		for c_index, center in enumerate(centers):
+			message += f"* DATE: TOMORROW \n"
 			message += f"* Centre Name: {center.get('name')}\n"
 			available = False
 			for index, session in enumerate(center.get('sessions', [])):
@@ -96,6 +97,7 @@ def generate_message(data: dict):
 			if not available:
 				message += f" -> No available slots found for tomorrow!\n\n"
 	else:
+		message += f"* DATE: Tomorrow \n"
 		message += f" -> No centers found for tomorrow!\n\n"
 
 	message = message.strip()
